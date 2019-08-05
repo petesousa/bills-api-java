@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@RestController("/bills")
+@RestController
+@RequestMapping("/bills")
 public class BillController {
 
     @Autowired
@@ -36,7 +37,7 @@ public class BillController {
         return billService.createBill(createBillConverter.encode(request));
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Bill payBill(@PathVariable("id") Long id) throws BadRequestException {
         return billService.payBill(id);
