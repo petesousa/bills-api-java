@@ -47,8 +47,8 @@ public class BillService {
         Long daysLate = DaysLate.daysLate(bill.getDueDate());
         if (daysLate > 0) {
             Fine fine = FineRule.fineRule(daysLate);
-            Bill billWithInterest = BillWithInterest.billWithInterest(bill, fine);
-            return billRepository.save(billWithInterest);
+            BillWithInterest.billWithInterest(bill, fine);
+            return billRepository.save(bill);
         }
 
         bill.setPaymentDay(LocalDate.now());

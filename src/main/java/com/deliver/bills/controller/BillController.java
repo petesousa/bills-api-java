@@ -8,6 +8,7 @@ import com.deliver.bills.domain.entity.Bill;
 import com.deliver.bills.converters.PayBillConverter;
 import com.deliver.bills.converters.CreateBillConverter;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -28,19 +29,19 @@ public class BillController {
     @Autowired
     private PayBillConverter payBillConverter;
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Page<Bill> get(@PageableDefault(size = 5, sort = "dueDate", direction = Sort.Direction.DESC) Pageable page) {
         return billService.getPage(page);
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public Bill createBill(@RequestBody CreateBill request) {
         return billService.createBill(createBillConverter.encode(request));
     }
 
-    @PutMapping
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Bill payBill(@RequestBody PayBill request) throws BadRequestException {
         return billService.payBill(payBillConverter.encode(request));
