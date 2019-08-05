@@ -29,8 +29,6 @@ public class BillService {
         bill.setTitle(createBill.getTitle());
         bill.setValue(createBill.getValue());
         bill.setDueDate(createBill.getDueDate());
-        bill.setPaymentDay(createBill.getPaymentDate());
-        bill.setValueWithInterest(createBill.getValueWithInterest());
 
         return billRepository.save(bill);
 

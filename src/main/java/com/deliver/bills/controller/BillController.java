@@ -26,7 +26,7 @@ public class BillController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Page<Bill> get(@PageableDefault(size = 5, sort = "dueDate", direction = Sort.Direction.DESC) Pageable page) {
+    public Page<Bill> get(@PageableDefault(size = 10, sort = "dueDate", direction = Sort.Direction.DESC) Pageable page) {
         return billService.getPage(page);
     }
 

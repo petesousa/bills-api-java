@@ -23,6 +23,4 @@ public class CreateBill {
     @NotNull
     LocalDate dueDate;
 
-    LocalDate paymentDate;
-    double valueWithInterest;
 }

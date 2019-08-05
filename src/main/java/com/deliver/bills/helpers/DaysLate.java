@@ -11,8 +11,6 @@ public final class DaysLate {
 
     public static Long daysLate(LocalDate dueDate) {
 
-        if(dueDate == null) { return new Long(0); }
-
         LocalDate today = LocalDate.now();
         return ChronoUnit.DAYS.between(dueDate, today);
 

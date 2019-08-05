@@ -11,8 +11,6 @@ public class CreateBillConverter {
                 .title(input.getTitle())
                 .value(input.getValue())
                 .dueDate(input.getDueDate())
-                .paymentDate(input.getPaymentDate())
-                .valueWithInterest(input.getValueWithInterest())
                 .build();
     }
 
