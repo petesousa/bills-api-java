@@ -4,9 +4,10 @@ import com.deliver.bills.dto.PayBill;
 import com.deliver.bills.dto.CreateBill;
 import com.deliver.bills.helpers.DaysLate;
 import com.deliver.bills.helpers.FineRule;
-import com.deliver.bills.domain.entities.Bill;
+import com.deliver.bills.domain.entity.Bill;
 import com.deliver.bills.dto.Fine;
 import com.deliver.bills.helpers.BillWithInterest;
+import com.deliver.bills.exception.BadRequestException;
 import com.deliver.bills.domain.repository.BillRepository;
 
 import java.util.Optional;
@@ -34,12 +35,12 @@ public class BillService {
 
     }
 
-    public Bill payBill(PayBill payBill) {
+    public Bill payBill(PayBill payBill) throws BadRequestException {
 
         Optional<Bill> findBill = billRepository.findById(payBill.getId());
 
         if(!findBill.isPresent()) {
-            throw new NullPointerException("The requested bill does not exist");
+            throw new BadRequestException("The requested bill does not exist");
         }
 
         Bill bill = findBill.get();

@@ -2,8 +2,9 @@ package com.deliver.bills.controller;
 
 import com.deliver.bills.dto.PayBill;
 import com.deliver.bills.dto.CreateBill;
+import com.deliver.bills.exception.BadRequestException;
 import com.deliver.bills.service.BillService;
-import com.deliver.bills.domain.entities.Bill;
+import com.deliver.bills.domain.entity.Bill;
 import com.deliver.bills.converters.PayBillConverter;
 import com.deliver.bills.converters.CreateBillConverter;
 
@@ -41,7 +42,7 @@ public class BillController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public Bill payBill(@RequestBody PayBill request) {
+    public Bill payBill(@RequestBody PayBill request) throws BadRequestException {
         return billService.payBill(payBillConverter.encode(request));
     }
 

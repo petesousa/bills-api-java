@@ -1,4 +1,4 @@
-package com.deliver.bills.domain.entities;
+package com.deliver.bills.domain.entity;
 
 import lombok.Data;
 import lombok.Builder;
