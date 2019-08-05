@@ -1,6 +1,5 @@
 package com.deliver.bills.service;
 
-import com.deliver.bills.dto.PayBill;
 import com.deliver.bills.dto.CreateBill;
 import com.deliver.bills.helpers.DaysLate;
 import com.deliver.bills.helpers.FineRule;
@@ -35,9 +34,9 @@ public class BillService {
 
     }
 
-    public Bill payBill(PayBill payBill) throws BadRequestException {
+    public Bill payBill(Long id) throws BadRequestException {
 
-        Optional<Bill> findBill = billRepository.findById(payBill.getId());
+        Optional<Bill> findBill = billRepository.findById(id);
 
         if(!findBill.isPresent()) {
             throw new BadRequestException("The requested bill does not exist");

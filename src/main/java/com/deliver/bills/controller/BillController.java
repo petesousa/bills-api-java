@@ -1,11 +1,9 @@
 package com.deliver.bills.controller;
 
-import com.deliver.bills.dto.PayBill;
 import com.deliver.bills.dto.CreateBill;
 import com.deliver.bills.exception.BadRequestException;
 import com.deliver.bills.service.BillService;
 import com.deliver.bills.domain.entity.Bill;
-import com.deliver.bills.converters.PayBillConverter;
 import com.deliver.bills.converters.CreateBillConverter;
 
 import org.springframework.http.MediaType;
@@ -26,9 +24,6 @@ public class BillController {
     @Autowired
     private CreateBillConverter createBillConverter;
 
-    @Autowired
-    private PayBillConverter payBillConverter;
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Page<Bill> get(@PageableDefault(size = 5, sort = "dueDate", direction = Sort.Direction.DESC) Pageable page) {
@@ -43,8 +38,8 @@ public class BillController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Bill payBill(@RequestBody PayBill request) throws BadRequestException {
-        return billService.payBill(payBillConverter.encode(request));
+    public Bill payBill(@PathVariable("id") Long id) throws BadRequestException {
+        return billService.payBill(id);
     }
 
 }
