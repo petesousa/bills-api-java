@@ -11,7 +11,7 @@ public final class BillWithInterest {
         throw new IllegalStateException("This class cannot be instantiated.");
     }
 
-    public static void billWithInterest(Bill bill, Fine fine) {
+    public static Bill billWithInterest(Bill bill, Fine fine) {
 
         double value = bill.getValue();
         Long daysLate = fine.getDaysLate();
@@ -26,6 +26,7 @@ public final class BillWithInterest {
         bill.setPaymentDay(LocalDate.now());
         bill.setValueWithInterest(valueWithInterest);
 
+        return bill;
     }
 
 }
