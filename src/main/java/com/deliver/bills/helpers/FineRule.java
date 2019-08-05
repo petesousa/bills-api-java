@@ -1,6 +1,6 @@
 package com.deliver.bills.helpers;
 
-import com.deliver.bills.domain.entities.Fine;
+import com.deliver.bills.dto.Fine;
 
 public final class FineRule {
 

@@ -2,8 +2,8 @@ package com.deliver.bills.helpers;
 
 import java.time.LocalDate;
 
+import com.deliver.bills.dto.Fine;
 import com.deliver.bills.domain.entities.Bill;
-import com.deliver.bills.domain.entities.Fine;
 
 public final class BillWithInterest {
 

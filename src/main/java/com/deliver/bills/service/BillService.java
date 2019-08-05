@@ -5,7 +5,7 @@ import com.deliver.bills.dto.CreateBill;
 import com.deliver.bills.helpers.DaysLate;
 import com.deliver.bills.helpers.FineRule;
 import com.deliver.bills.domain.entities.Bill;
-import com.deliver.bills.domain.entities.Fine;
+import com.deliver.bills.dto.Fine;
 import com.deliver.bills.helpers.BillWithInterest;
 import com.deliver.bills.domain.repository.BillRepository;
 
