@@ -43,11 +43,18 @@ public class BillService {
         }
 
         Bill bill = findBill.get();
+
+        if (bill.getPaymentDay() != null) {
+            throw new BadRequestException("This bill is already paid.");
+        }
+
         Long daysLate = DaysLate.daysLate(bill.getDueDate());
         if (daysLate > 0) {
             Fine fine = FineRule.fineRule(daysLate);
             BillWithInterest.billWithInterest(bill, fine);
             return billRepository.save(bill);
+        } else {
+            bill.setValueWithInterest(bill.getValue());
         }
 
         bill.setPaymentDay(LocalDate.now());
