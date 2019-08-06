@@ -1,4 +1,4 @@
-package com.deliver.bills.domain.repository;
+package com.deliver.bills.domain.repository.custom;
 
 import com.deliver.bills.domain.entity.Bill;
 import org.springframework.data.jpa.repository.JpaRepository;
