@@ -25,18 +25,21 @@ public class BillController {
     @Autowired
     private CreateBillConverter createBillConverter;
 
+    @CrossOrigin
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Page<Bill> get(@PageableDefault(size = 10, sort = "dueDate", direction = Sort.Direction.DESC) Pageable page) {
+    public Page<Bill> get(@PageableDefault(size = 10, sort = "dueDate", direction = Sort.Direction.DESC) Pageable page) throws BadRequestException {
         return billService.getPage(page);
     }
 
+    @CrossOrigin
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public Bill createBill(@RequestBody CreateBill request) {
         return billService.createBill(createBillConverter.encode(request));
     }
 
+    @CrossOrigin
     @PutMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Bill payBill(@PathVariable("id") Long id) throws BadRequestException {

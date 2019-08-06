@@ -55,7 +55,11 @@ public class BillService {
 
     }
 
-    public Page<Bill> getPage(Pageable page) {
+    private boolean isPaid(Bill bill) {
+        return bill.getPaymentDay() != null;
+    }
+
+    public Page<Bill> getPage(Pageable page) throws BadRequestException {
         return billRepository.findAll(page);
     }
 }
