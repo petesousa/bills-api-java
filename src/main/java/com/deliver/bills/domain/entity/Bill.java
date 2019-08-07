@@ -39,4 +39,5 @@ public class Bill {
 
     @Column(name = "value_with_interest", scale = 2, nullable = true)
     private double valueWithInterest;
+
 }

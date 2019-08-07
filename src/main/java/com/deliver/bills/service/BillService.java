@@ -1,6 +1,5 @@
 package com.deliver.bills.service;
 
-import com.deliver.bills.dto.CreateBill;
 import com.deliver.bills.helpers.DaysLate;
 import com.deliver.bills.helpers.FineRule;
 import com.deliver.bills.domain.entity.Bill;
@@ -8,6 +7,7 @@ import com.deliver.bills.dto.Fine;
 import com.deliver.bills.helpers.BillWithInterest;
 import com.deliver.bills.exception.BadRequestException;
 import com.deliver.bills.domain.repository.BillRepository;
+import com.deliver.bills.domain.repository.custom.BillRepositoryCustomImpl;
 
 import java.util.Optional;
 import java.time.LocalDate;
@@ -23,7 +23,10 @@ public class BillService {
     @Autowired
     private BillRepository billRepository;
 
-    public Bill createBill(CreateBill createBill) {
+    @Autowired
+    private BillRepositoryCustomImpl billRepositoryCustomImpl;
+
+    public Bill createBill(Bill createBill) {
 
         Bill bill = new Bill();
         bill.setTitle(createBill.getTitle());
@@ -68,5 +71,6 @@ public class BillService {
 
     public Page<Bill> getPage(Pageable page) throws BadRequestException {
         return billRepository.findAll(page);
+//        return billRepositoryCustomImpl.findPaidBills();
     }
 }
